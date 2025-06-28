@@ -93,14 +93,17 @@
       <ChatBubble sender="bot">🎉 Thank you for sharing! Here's what you submitted:</ChatBubble>
 
       <div class="bg-white/80 backdrop-blur-md border border-gray-200 rounded-lg p-4 shadow-md space-y-3 mt-3 text-sm">
-        <p v-if="userName"><strong>Name:</strong> {{ userName }}</p>
-        <p v-if="userEmail"><strong>Email:</strong> {{ userEmail }}</p>
-        <p v-if="userPhone"><strong>Phone:</strong> {{ userPhone }}</p>
-        <p v-if="selectedBrands.length"><strong>Selected Brands:</strong> {{ selectedBrands.join(', ') }}</p>
-        <p v-if="newBrandName"><strong>Suggested Brand:</strong> {{ newBrandName }}</p>
-        <p v-if="newProductName"><strong>Suggested Product:</strong> {{ newProductName }}</p>
-        <p v-if="newImageData"><strong>Image:</strong> <a :href="newImageData" target="_blank"
-            class="text-blue-600 underline">View uploaded image</a></p>
+        <p v-if="submittedData.name"><strong>Name:</strong> {{ submittedData.name }}</p>
+        <p v-if="submittedData.email"><strong>Email:</strong> {{ submittedData.email }}</p>
+        <p v-if="submittedData.phone"><strong>Phone:</strong> {{ submittedData.phone }}</p>
+        <p v-if="submittedData.selectedBrands"><strong>Selected Brands:</strong> {{ submittedData.selectedBrands }}</p>
+        <p v-if="submittedData.suggestedBrand"><strong>Suggested Brand:</strong> {{ submittedData.suggestedBrand }}</p>
+        <p v-if="submittedData.suggestedProduct"><strong>Suggested Product:</strong> {{ submittedData.suggestedProduct
+        }}</p>
+        <p v-if="submittedData.image && submittedData.image !== 'N/A'">
+          <strong>Image:</strong>
+          <a :href="submittedData.image" target="_blank" class="text-blue-600 underline">View uploaded image</a>
+        </p>
       </div>
 
       <!-- Thank you and contact message -->
@@ -109,7 +112,7 @@
         <p>We're launching in <strong>August</strong>! If you have any questions, feel free to reach out:</p>
         <p class="mt-2">
           📧 <a href="mailto:artisansvale@gmail.com" class="text-pink-600 underline">artisansvale@gmail.com</a><br />
-          📱 <a href="tel:+911234567890" class="text-pink-600 underline">+1 567 801 7023</a><br />
+          💬 WhatsApp us: <a href="tel:+15678017023" class="text-pink-600 underline">+1 (567) 801-7023</a><br />
           📸 <a href="https://instagram.com/artisanvale" target="_blank"
             class="text-pink-600 underline">@artisanvale</a>
         </p>
@@ -128,6 +131,7 @@ import ContactForm from './ContactForm.vue';
 const step = ref(1);
 const searchQuery = ref('');
 const selectedBrands = ref([]);
+const submittedData = ref({});
 
 const brands = [
   "Minimalist", "Dot & Key", "Mamaearth", "WOW Skin Science", "Plum Goodness", "mCaffeine", "The Derma Co.", "Biotique", "Forest Essentials", "Just Herbs",
@@ -186,10 +190,47 @@ function nextStep() {
   step.value += 1;
 }
 function submitForm() {
-  console.log('Form submitted!');
-  step.value = 4;
+  const formData = {
+    name: userName.value || '',
+    email: userEmail.value || '',
+    phone: userPhone.value || '',
+    selectedBrands: selectedBrands.value.join(', '),
+    suggestedBrand: newBrandName.value || '',
+    suggestedProduct: newProductName.value || '',
+    image: newImageData.value || ''
+  };
 
+  fetch("https://formspree.io/f/xleybrdn", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json"
+    },
+    body: JSON.stringify(formData)
+  })
+    .then(async res => {
+      if (res.ok) {
+        submittedData.value = { ...formData };
+        selectedBrands.value = [];
+        newBrandName.value = '';
+        newProductName.value = '';
+        newImageData.value = '';
+        userName.value = '';
+        userEmail.value = '';
+        userPhone.value = '';
+        step.value = 4;
+      } else {
+        const error = await res.json();
+        console.error("Formspree Error:", error);
+        alert("Oops! Submission failed: " + (error.message || "Unprocessable Content"));
+      }
+    })
+    .catch(err => {
+      console.error("Network Error:", err);
+      alert("Network error. Please try again later.");
+    });
 }
+
 
 // Layout constants
 const chatSectionTop = 180; // Same as App.vue pt-[180px]
