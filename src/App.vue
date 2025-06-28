@@ -8,7 +8,7 @@
     </div>
 
     <!-- Main Content -->
-    <main class="flex-1 max-w-md w-full mx-auto px-4 pt-[180px] pb-[72px] overflow-hidden">
+<main class="flex-1 max-w-md w-full mx-auto px-4 pt-[180px] pb-[72px] overflow-hidden relative">
       <ConversationalForm />
     </main>
 

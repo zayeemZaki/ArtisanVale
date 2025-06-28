@@ -37,31 +37,41 @@
       </div>
     </div>
 
-    <!-- Step 2 -->
-    <div v-else-if="step === 2" class="flex flex-col gap-4 px-4">
-      <div class="flex justify-center">
-
-        <ChatBubble sender="bot">Want to suggest a new brand or product?</ChatBubble>
-      </div>
-      <AddBrandForm :brandName="newBrandName" :productName="newProductName" :imageUrl="newImageUrl"
-        @update:brandName="newBrandName = $event" @update:productName="newProductName = $event"
-        @update:imageUrl="newImageUrl = $event" />
-
-      <div class="flex justify-between items-center pt-4">
-        <!-- Back Button -->
-        <button @click="prevStep"
-          class="flex items-center gap-2 px-4 py-2 rounded-full border border-gray-300 bg-white/50 backdrop-blur-md text-gray-600 hover:bg-white hover:shadow-md hover:text-black transition duration-200">
-          <span class="text-lg">←</span>
-          <span class="font-medium">Back</span>
-        </button>
-
-        <!-- Next Button -->
-        <button @click="nextStep"
-          class="bg-pink-500 hover:bg-pink-600 text-white px-6 py-2 rounded-full shadow-lg transition-all duration-200">
-          Next →
-        </button>
-      </div>
-    </div>
+<!-- Step 2 -->
+<div
+  v-else-if="step === 2"
+  class="absolute inset-x-0"
+  :style="{
+    top: chatSectionTop + 'px',
+    bottom: nextButtonHeight + footerHeight + 'px',
+    overflowY: 'auto',
+    padding: '0 1rem'
+  }"
+>
+  <ChatBubble sender="bot">Want to suggest a new brand or product?</ChatBubble>
+  <AddBrandForm
+    :brandName="newBrandName"
+    :productName="newProductName"
+    :imageData="newImageData"
+    @update:brandName="newBrandName = $event"
+    @update:productName="newProductName = $event"
+    @update:imageData="newImageData = $event"
+  />
+  <div class="flex justify-between pt-4 pb-8">
+    <button
+      class="text-gray-600 hover:underline"
+      @click="prevStep"
+    >
+      ← Back
+    </button>
+    <button
+      class="bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-full shadow-md"
+      @click="nextStep"
+    >
+      Next →
+    </button>
+  </div>
+</div>
 
     <!-- Step 3 -->
     <div v-else-if="step === 3" class="flex flex-col space-y-2">
@@ -88,40 +98,34 @@
       </div>
     </div>
 
-<!-- Step 4: Thank You & Confirmation -->
-<div v-else class="flex flex-col h-full overflow-y-auto px-4 pb-32 pt-4 text-center items-center">
-  <!-- Thank You Message -->
-  <div class="bg-pink-100 text-pink-800 rounded-full px-6 py-2 text-sm mb-6 shadow">
-    🎉 Thank you for sharing! Here's what you submitted:
+<!-- Step 4 -->
+<div
+  v-else
+  class="absolute inset-x-0 px-4 py-6 overflow-y-auto"
+  :style="{ top: chatSectionTop + 'px', bottom: footerHeight + 'px' }"
+>
+  <ChatBubble sender="bot">🎉 Thank you for sharing! Here's what you submitted:</ChatBubble>
+
+  <div class="bg-white/80 backdrop-blur-md border border-gray-200 rounded-lg p-4 shadow-md space-y-3 mt-3 text-sm">
+    <p v-if="userName"><strong>Name:</strong> {{ userName }}</p>
+    <p v-if="userEmail"><strong>Email:</strong> {{ userEmail }}</p>
+    <p v-if="userPhone"><strong>Phone:</strong> {{ userPhone }}</p>
+    <p v-if="selectedBrands.length"><strong>Selected Brands:</strong> {{ selectedBrands.join(', ') }}</p>
+    <p v-if="newBrandName"><strong>Suggested Brand:</strong> {{ newBrandName }}</p>
+    <p v-if="newProductName"><strong>Suggested Product:</strong> {{ newProductName }}</p>
+    <p v-if="newImageData"><strong>Image:</strong> <a :href="newImageData" target="_blank" class="text-blue-600 underline">View uploaded image</a></p>
   </div>
 
-  <!-- Summary Card -->
-  <div class="bg-white/70 backdrop-blur-md border border-pink-200 p-6 rounded-xl shadow max-w-md w-full text-left text-sm mb-6">
-    <p class="mb-2"><strong>Name:</strong> {{ name || 'N/A' }}</p>
-    <p class="mb-2"><strong>Email:</strong> {{ email || 'N/A' }}</p>
-    <p class="mb-2"><strong>Phone:</strong> {{ phone || 'N/A' }}</p>
-    <p class="mb-2"><strong>Selected Brands:</strong> {{ selectedBrands.length ? selectedBrands.join(', ') : 'N/A' }}</p>
-    <p class="mb-2"><strong>Suggested Brand:</strong> {{ suggestedBrand || 'N/A' }}</p>
-    <p class="mb-2"><strong>Suggested Product:</strong> {{ suggestedProduct || 'N/A' }}</p>
-    <p class="mb-0"><strong>Image:</strong> {{ imagePreview ? '✅ Attached' : 'N/A' }}</p>
-  </div>
-
-  <!-- Launch Notice -->
-  <div class="bg-pink-50 border border-pink-200 rounded-xl p-6 text-sm leading-relaxed max-w-md w-full shadow text-gray-800">
-    <p class="mb-2 font-semibold text-pink-700 text-base">
-      We're launching in <span class="text-pink-600 font-bold">August 2025!</span> 🛍️
+  <!-- Thank you and contact message -->
+  <div class="mt-6 text-center text-gray-700 text-sm leading-relaxed px-1">
+    <p>Thank you for shaping our collection! 💖</p>
+    <p>We're launching in <strong>August</strong>! If you have any questions, feel free to reach out:</p>
+    <p class="mt-2">
+      📧 <a href="mailto:hello@artisanvale.com" class="text-pink-600 underline">hello@artisanvale.com</a><br />
+      📱 <a href="tel:+911234567890" class="text-pink-600 underline">+91 12345 67890</a><br />
+      📸 <a href="https://instagram.com/artisanvale" target="_blank" class="text-pink-600 underline">@artisanvale</a>
     </p>
-    <p class="mb-3">
-      Stay tuned — your input helps us shape our perfect skincare lineup. 💖
-    </p>
-    <p class="mb-1">Have questions? Contact us at:</p>
-    <p>
-      <a href="mailto:hello@artisanvale.com" class="text-pink-600 underline">hello@artisanvale.com</a> |
-      <a href="tel:+11234567890" class="text-pink-600 underline">+1 (123) 456-7890</a>
-    </p>
-    <p class="mt-3">Follow us on Instagram: 
-      <a href="https://instagram.com/artisanvale" target="_blank" class="text-pink-600 underline">@artisanvale</a>
-    </p>
+    <p class="mt-2 font-medium">Follow us on Instagram for updates!</p>
   </div>
 </div>
   </div>
