@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-[#fcfbf5] flex flex-col">
+  <div class="h-full bg-[#fcfbf5] flex flex-col">
     <!-- Fixed Header -->
     <div
       class="fixed top-0 left-0 right-0 z-50 bg-white/70 backdrop-blur-md border-b border-pink-100 shadow"
@@ -8,7 +8,7 @@
     </div>
 
     <!-- Main Content -->
-    <main class="flex-1 max-w-md w-full mx-auto px-4 pt-[180px] pb-[72px]">
+    <main class="flex-1 max-w-md w-full mx-auto px-4 pt-[180px] pb-[72px] overflow-hidden">
       <ConversationalForm />
     </main>
 
@@ -34,3 +34,13 @@ export default {
   }
 };
 </script>
+
+
+
+<style>
+html, body, #app {
+  height: 100%;
+  overflow: hidden;
+}
+
+</style>
