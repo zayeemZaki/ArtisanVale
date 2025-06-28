@@ -37,44 +37,31 @@
       </div>
     </div>
 
-<!-- Step 2 -->
-<div
-  v-else-if="step === 2"
-  class="absolute inset-x-0"
-  :style="{
-    top: chatSectionTop + 'px',
-    bottom: nextButtonHeight + footerHeight + 'px',
-    overflowY: 'auto',
-    padding: '0 1rem'
-  }"
->
-        <div class="flex justify-center">
+    <!-- Step 2 -->
+    <div v-else-if="step === 2" class="absolute inset-x-0" :style="{
+      top: chatSectionTop + 'px',
+      bottom: nextButtonHeight + footerHeight + 'px',
+      overflowY: 'auto',
+      padding: '0 1rem'
+    }">
+      <div class="flex justify-center">
 
-  <ChatBubble sender="bot">Want to suggest a new brand or product?</ChatBubble>
-        </div>
-  <AddBrandForm
-    :brandName="newBrandName"
-    :productName="newProductName"
-    :imageData="newImageData"
-    @update:brandName="newBrandName = $event"
-    @update:productName="newProductName = $event"
-    @update:imageData="newImageData = $event"
-  />
-  <div class="flex justify-between pt-4 pb-8">
-    <button
-      class="text-gray-600 hover:underline"
-      @click="prevStep"
-    >
-      ← Back
-    </button>
-    <button
-      class="bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-full shadow-md"
-      @click="nextStep"
-    >
-      Next →
-    </button>
-  </div>
-</div>
+        <ChatBubble sender="bot">Want to suggest a new brand or product?</ChatBubble>
+      </div>
+      <AddBrandForm :brandName="newBrandName" :productName="newProductName" :imageData="newImageData"
+        @update:brandName="newBrandName = $event" @update:productName="newProductName = $event"
+        @update:imageData="newImageData = $event" />
+      <div class="flex justify-between pt-4 pb-8">
+        <button @click="prevStep"
+          class="flex items-center gap-2 px-4 py-2 rounded-full border border-gray-300 bg-white/50 backdrop-blur-md text-gray-600 hover:bg-white hover:shadow-md hover:text-black transition duration-200">
+          <span class="text-lg">←</span>
+          <span class="font-medium">Back</span>
+        </button>
+        <button class="bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-full shadow-md" @click="nextStep">
+          Next →
+        </button>
+      </div>
+    </div>
 
     <!-- Step 3 -->
     <div v-else-if="step === 3" class="flex flex-col space-y-2">
@@ -101,36 +88,35 @@
       </div>
     </div>
 
-<!-- Step 4 -->
-<div
-  v-else
-  class="absolute inset-x-0 px-4 py-6 overflow-y-auto"
-  :style="{ top: chatSectionTop + 'px', bottom: footerHeight + 'px' }"
->
-  <ChatBubble sender="bot">🎉 Thank you for sharing! Here's what you submitted:</ChatBubble>
+    <!-- Step 4 -->
+    <div v-else class="absolute inset-x-0 px-4 py-6 overflow-y-auto"
+      :style="{ top: chatSectionTop + 'px', bottom: footerHeight + 'px' }">
+      <ChatBubble sender="bot">🎉 Thank you for sharing! Here's what you submitted:</ChatBubble>
 
-  <div class="bg-white/80 backdrop-blur-md border border-gray-200 rounded-lg p-4 shadow-md space-y-3 mt-3 text-sm">
-    <p v-if="userName"><strong>Name:</strong> {{ userName }}</p>
-    <p v-if="userEmail"><strong>Email:</strong> {{ userEmail }}</p>
-    <p v-if="userPhone"><strong>Phone:</strong> {{ userPhone }}</p>
-    <p v-if="selectedBrands.length"><strong>Selected Brands:</strong> {{ selectedBrands.join(', ') }}</p>
-    <p v-if="newBrandName"><strong>Suggested Brand:</strong> {{ newBrandName }}</p>
-    <p v-if="newProductName"><strong>Suggested Product:</strong> {{ newProductName }}</p>
-    <p v-if="newImageData"><strong>Image:</strong> <a :href="newImageData" target="_blank" class="text-blue-600 underline">View uploaded image</a></p>
-  </div>
+      <div class="bg-white/80 backdrop-blur-md border border-gray-200 rounded-lg p-4 shadow-md space-y-3 mt-3 text-sm">
+        <p v-if="userName"><strong>Name:</strong> {{ userName }}</p>
+        <p v-if="userEmail"><strong>Email:</strong> {{ userEmail }}</p>
+        <p v-if="userPhone"><strong>Phone:</strong> {{ userPhone }}</p>
+        <p v-if="selectedBrands.length"><strong>Selected Brands:</strong> {{ selectedBrands.join(', ') }}</p>
+        <p v-if="newBrandName"><strong>Suggested Brand:</strong> {{ newBrandName }}</p>
+        <p v-if="newProductName"><strong>Suggested Product:</strong> {{ newProductName }}</p>
+        <p v-if="newImageData"><strong>Image:</strong> <a :href="newImageData" target="_blank"
+            class="text-blue-600 underline">View uploaded image</a></p>
+      </div>
 
-  <!-- Thank you and contact message -->
-  <div class="mt-6 text-center text-gray-700 text-sm leading-relaxed px-1">
-    <p>Thank you for shaping our collection! 💖</p>
-    <p>We're launching in <strong>August</strong>! If you have any questions, feel free to reach out:</p>
-    <p class="mt-2">
-      📧 <a href="mailto:hello@artisanvale.com" class="text-pink-600 underline">hello@artisanvale.com</a><br />
-      📱 <a href="tel:+911234567890" class="text-pink-600 underline">+91 12345 67890</a><br />
-      📸 <a href="https://instagram.com/artisanvale" target="_blank" class="text-pink-600 underline">@artisanvale</a>
-    </p>
-    <p class="mt-2 font-medium">Follow us on Instagram for updates!</p>
-  </div>
-</div>
+      <!-- Thank you and contact message -->
+      <div class="mt-6 text-center text-gray-700 text-sm leading-relaxed px-1">
+        <p>Thank you for shaping our collection! 💖</p>
+        <p>We're launching in <strong>August</strong>! If you have any questions, feel free to reach out:</p>
+        <p class="mt-2">
+          📧 <a href="mailto:hello@artisanvale.com" class="text-pink-600 underline">hello@artisanvale.com</a><br />
+          📱 <a href="tel:+911234567890" class="text-pink-600 underline">+91 12345 67890</a><br />
+          📸 <a href="https://instagram.com/artisanvale" target="_blank"
+            class="text-pink-600 underline">@artisanvale</a>
+        </p>
+        <p class="mt-2 font-medium">Follow us on Instagram for updates!</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -202,7 +188,7 @@ function nextStep() {
 }
 function submitForm() {
   console.log('Form submitted!');
-    step.value = 4;
+  step.value = 4;
 
 }
 
