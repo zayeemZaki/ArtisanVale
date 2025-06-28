@@ -48,7 +48,10 @@
     padding: '0 1rem'
   }"
 >
+        <div class="flex justify-center">
+
   <ChatBubble sender="bot">Want to suggest a new brand or product?</ChatBubble>
+        </div>
   <AddBrandForm
     :brandName="newBrandName"
     :productName="newProductName"
