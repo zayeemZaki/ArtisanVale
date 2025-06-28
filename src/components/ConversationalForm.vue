@@ -1,7 +1,6 @@
 <template>
   <div class="h-full flex flex-col overflow-hidden text-sm sm:text-base text-gray-800">
     <!-- Step 1 -->
-    <!-- Step 1 -->
     <div v-if="step === 1" class="h-full flex flex-col">
       <!-- Fixed Chat + Search -->
       <div ref="chatContainerRef" class="shrink-0 bg-[#fcfbf5] px-4 pt-2 pb-1 z-10">
