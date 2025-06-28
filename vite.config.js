@@ -1,7 +1,8 @@
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+// vite.config.js
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
 
-// https://vite.dev/config/
 export default defineConfig({
+  base: 'ArtisanVale', // Replace with your GitHub repo name
   plugins: [vue()],
-})
+});

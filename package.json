@@ -6,8 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "gh-pages -d dist"
   },
+  "homepage": "https://zayeemzaki.github.io/ArtisanVale/",
   "dependencies": {
     "vue": "^3.5.17"
   },
@@ -15,4 +17,16 @@
     "@vitejs/plugin-vue": "^6.0.0",
     "vite": "^7.0.0"
   }
+}
+
+
+{
+  "name": "your-app",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "gh-pages -d dist"
+  },
+  "homepage": "https://your-username.github.io/your-repo-name"
 }
