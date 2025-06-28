@@ -18,15 +18,3 @@
     "vite": "^7.0.0"
   }
 }
-
-
-{
-  "name": "your-app",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "deploy": "gh-pages -d dist"
-  },
-  "homepage": "https://your-username.github.io/your-repo-name"
-}
