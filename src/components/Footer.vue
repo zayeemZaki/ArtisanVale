@@ -3,7 +3,7 @@
     <p>
       © 2025 <span class="text-pink-600 font-semibold">ArtisanVale</span> &nbsp;·&nbsp;
       <a href="mailto:artisansvale@gmail.com" class="text-pink-500 hover:underline">
-        support@artisanvale.in
+        artisansvale@gmail.com
       </a> &nbsp;·&nbsp;
       📸 <a href="https://www.instagram.com/artisanvale/" target="_blank" class="text-pink-500 hover:underline">
         Instagram

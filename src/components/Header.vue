@@ -13,7 +13,7 @@
 
     <!-- Logo wrapped in anchor tag -->
     <div class="order-2 sm:order-1 flex justify-center sm:justify-start">
-      <a href="/">
+      <a href="/ArtisanVale/">
         <img
           src="/ArtisanVale.png"
           alt="ArtisanVale Logo"
