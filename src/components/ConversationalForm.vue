@@ -109,8 +109,8 @@
         <p>Thank you for shaping our collection! 💖</p>
         <p>We're launching in <strong>August</strong>! If you have any questions, feel free to reach out:</p>
         <p class="mt-2">
-          📧 <a href="mailto:hello@artisanvale.com" class="text-pink-600 underline">hello@artisanvale.com</a><br />
-          📱 <a href="tel:+911234567890" class="text-pink-600 underline">+91 12345 67890</a><br />
+          📧 <a href="mailto:artisansvale@gmail.com" class="text-pink-600 underline">artisansvale@gmail.com</a><br />
+          📱 <a href="tel:+911234567890" class="text-pink-600 underline">+1 567 801 7023</a><br />
           📸 <a href="https://instagram.com/artisanvale" target="_blank"
             class="text-pink-600 underline">@artisanvale</a>
         </p>
