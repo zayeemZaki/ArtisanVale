@@ -2,7 +2,7 @@
   <header
     class="w-full px-6 pt-4 pb-4 flex flex-col sm:flex-row sm:justify-between sm:items-start sm:gap-6 bg-transparent text-center sm:text-left"
   >
-    <!-- Tagline: Top on mobile, right on desktop -->
+    <!-- Tagline -->
     <div class="order-1 sm:order-2 mb-2 sm:mb-0 sm:self-start sm:pt-1">
       <span
         class="shimmer-badge hover:shadow-md hover:scale-105 transition-transform duration-300"
@@ -11,13 +11,15 @@
       </span>
     </div>
 
-    <!-- Logo: Below tagline on mobile, left on desktop -->
+    <!-- Logo wrapped in anchor tag -->
     <div class="order-2 sm:order-1 flex justify-center sm:justify-start">
-      <img
-        src="/ArtisanVale.png"
-        alt="ArtisanVale Logo"
-        class="h-24 w-48 sm:h-28 sm:w-56 object-contain rounded-2xl border border-gray-300 shadow-md bg-white p-1"
-      />
+      <a href="/">
+        <img
+          src="/ArtisanVale.png"
+          alt="ArtisanVale Logo"
+          class="h-24 w-48 sm:h-28 sm:w-56 object-contain rounded-2xl border border-gray-300 shadow-md bg-white p-1"
+        />
+      </a>
     </div>
   </header>
 </template>
