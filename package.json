@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "deploy": "gh-pages -d dist"
   },
-  "homepage": "https://zayeemzaki.github.io/ArtisanVale/",
+  "homepage": "https://artisanvale.in",
   "dependencies": {
     "vue": "^3.5.17"
   },
